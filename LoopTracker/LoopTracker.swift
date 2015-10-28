@@ -6,6 +6,7 @@
 //  Copyright © 2015 Reid Chatham. All rights reserved.
 //
 
+
 import UIKit
 
 public class LoopTracker: UIView {
@@ -16,8 +17,16 @@ public class LoopTracker: UIView {
         static let AnimationChangeTimeStep : Double = 0.01
     }
     
+    // Set this to false to make the loop unwind instead of fill
+    public var clockwise = true
+    
+    public var color = UIColor.whiteColor().colorWithAlphaComponent(1.0)
+    
+    // Sets a custom outer ring radius
     public var ringOuterRadius : CGFloat!
+    // Sets a custom outer ring width
     public var ringWidth : CGFloat!
+    // Sets a custom radius for the beat counter
     public var beatCounterRadius : CGFloat! {
         didSet {
             beatCounter?.frame = CGRect(x: frame.width/2-beatCounterRadius, y: frame.height/2-beatCounterRadius, width: beatCounterRadius*2, height: beatCounterRadius*2)
@@ -27,6 +36,10 @@ public class LoopTracker: UIView {
             beatCounter?.clipsToBounds = true
         }
     }
+    
+    // Gives the length of the current animation
+    // The finishingAnimation() has a trailing animation that is also the same length
+    public var duration : Double { return 60/beatInfo.bpm }
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,16 +53,13 @@ public class LoopTracker: UIView {
         setup()
     }
     
-    
     private var beatCounter : UIView!
-    
-    public var color = UIColor.whiteColor().colorWithAlphaComponent(1.0)
-    
     
     private func setup() {
         self.backgroundColor = UIColor.clearColor()
         
-        //Determine initial radii
+        // Determine initial radii
+        // Can be reset using public properties
         let maxRadius = min(frame.width/2, frame.height/2)
         ringOuterRadius = maxRadius
         ringWidth = maxRadius - maxRadius*0.8
@@ -64,9 +74,6 @@ public class LoopTracker: UIView {
         self.addSubview(beatCounter)
     }
     
-    
-    public var clockwise = true
-    
     private var animationTimer : NSTimer!
     
     private var startProgress : Double = 0
@@ -74,6 +81,7 @@ public class LoopTracker: UIView {
     private var endProgress : Double = 0
     private var animationProgressStep : Double = 0
     
+    // Call this method to update the animation for the current beat
     public func beatElapsed(beatInfo : (beatsPerLoop: Double, bpm: Double, beatCount: Double)) {
         self.beatInfo = beatInfo
         
@@ -83,13 +91,10 @@ public class LoopTracker: UIView {
         animateBeatElapsed()
     }
     
-    
-    public var duration : Double { return 60/beatInfo.bpm }
-    
     private func animateBeatElapsed() {
         
         if beatInfo == nil {
-            fatalError("No update method set")
+            fatalError("Beat not set")
         }
         
         startProgress = progress
@@ -103,8 +108,6 @@ public class LoopTracker: UIView {
         } else {
             standardAnimation()
         }
-        
-        
     }
     
     private func standardAnimation() {
@@ -124,7 +127,6 @@ public class LoopTracker: UIView {
                     [unowned self] in
                     self.beatCounter.alpha = 0.0
                     })
-                
         }
     }
     
@@ -195,13 +197,13 @@ public class LoopTracker: UIView {
                             view.removeFromSuperview()
                         }
                 })
-                
         }
-        
     }
     
     private var alphaReduction : CGFloat = 0.0
     
+    // DO NOT CALL THIS FUNCTION DIRECTLY!!
+    // Call beatElapsed
     func updateBeatForAnimation() {
         
         let numberOfAnimations = duration/Constants.AnimationChangeTimeStep
@@ -228,6 +230,8 @@ public class LoopTracker: UIView {
         setNeedsDisplay()
     }
     
+    // DO NOT CALL THIS FUNCTION DIRECTLY!!!
+    // Call beatElapsed
     override public func drawRect(rect: CGRect) {
         drawLoopCounter(ringOuterRadius)
     }

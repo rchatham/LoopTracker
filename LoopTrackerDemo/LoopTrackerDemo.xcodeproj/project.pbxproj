@@ -10,12 +10,11 @@
 		308F43DD1BE0562F006AC354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43DC1BE0562F006AC354 /* AppDelegate.swift */; };
 		308F43DF1BE0562F006AC354 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43DE1BE0562F006AC354 /* ViewController.swift */; };
 		308F43E21BE0562F006AC354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308F43E01BE0562F006AC354 /* Main.storyboard */; };
-		308F43E51BE0562F006AC354 /* LoopTrackerDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 308F43E31BE0562F006AC354 /* LoopTrackerDemo.xcdatamodeld */; };
 		308F43E71BE0562F006AC354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 308F43E61BE0562F006AC354 /* Assets.xcassets */; };
 		308F43EA1BE0562F006AC354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308F43E81BE0562F006AC354 /* LaunchScreen.storyboard */; };
 		308F43F51BE0562F006AC354 /* LoopTrackerDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43F41BE0562F006AC354 /* LoopTrackerDemoTests.swift */; };
 		308F44001BE0562F006AC354 /* LoopTrackerDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43FF1BE0562F006AC354 /* LoopTrackerDemoUITests.swift */; };
-		308F440E1BE056E0006AC354 /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308F440D1BE056E0006AC354 /* LoopTracker.framework */; settings = {ASSET_TAGS = (); }; };
+		308F44101BE13E9B006AC354 /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308F440F1BE13E9B006AC354 /* LoopTracker.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +39,6 @@
 		308F43DC1BE0562F006AC354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		308F43DE1BE0562F006AC354 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		308F43E11BE0562F006AC354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		308F43E41BE0562F006AC354 /* LoopTrackerDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LoopTrackerDemo.xcdatamodel; sourceTree = "<group>"; };
 		308F43E61BE0562F006AC354 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		308F43E91BE0562F006AC354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		308F43EB1BE0562F006AC354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,7 +48,7 @@
 		308F43FB1BE0562F006AC354 /* LoopTrackerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoopTrackerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F43FF1BE0562F006AC354 /* LoopTrackerDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTrackerDemoUITests.swift; sourceTree = "<group>"; };
 		308F44011BE0562F006AC354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		308F440D1BE056E0006AC354 /* LoopTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopTracker.framework; sourceTree = "<group>"; };
+		308F440F1BE13E9B006AC354 /* LoopTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LoopTracker.framework; path = "../../../../Library/Developer/Xcode/DerivedData/LoopTracker-cfjuavftmaahfvbdsiukcbwreqcc/Build/Products/Debug-iphoneos/LoopTracker.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				308F440E1BE056E0006AC354 /* LoopTracker.framework in Frameworks */,
+				308F44101BE13E9B006AC354 /* LoopTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,14 +100,13 @@
 		308F43DB1BE0562F006AC354 /* LoopTrackerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				308F440D1BE056E0006AC354 /* LoopTracker.framework */,
+				308F440F1BE13E9B006AC354 /* LoopTracker.framework */,
 				308F43DC1BE0562F006AC354 /* AppDelegate.swift */,
 				308F43DE1BE0562F006AC354 /* ViewController.swift */,
 				308F43E01BE0562F006AC354 /* Main.storyboard */,
 				308F43E61BE0562F006AC354 /* Assets.xcassets */,
 				308F43E81BE0562F006AC354 /* LaunchScreen.storyboard */,
 				308F43EB1BE0562F006AC354 /* Info.plist */,
-				308F43E31BE0562F006AC354 /* LoopTrackerDemo.xcdatamodeld */,
 			);
 			path = LoopTrackerDemo;
 			sourceTree = "<group>";
@@ -262,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				308F43E51BE0562F006AC354 /* LoopTrackerDemo.xcdatamodeld in Sources */,
 				308F43DF1BE0562F006AC354 /* ViewController.swift in Sources */,
 				308F43DD1BE0562F006AC354 /* AppDelegate.swift in Sources */,
 			);
@@ -517,19 +513,6 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		308F43E31BE0562F006AC354 /* LoopTrackerDemo.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				308F43E41BE0562F006AC354 /* LoopTrackerDemo.xcdatamodel */,
-			);
-			currentVersion = 308F43E41BE0562F006AC354 /* LoopTrackerDemo.xcdatamodel */;
-			path = LoopTrackerDemo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 308F43D11BE0562F006AC354 /* Project object */;
 }
