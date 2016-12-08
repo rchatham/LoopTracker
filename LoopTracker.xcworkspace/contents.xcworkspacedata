@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:LoopTrackerDemo/LoopTrackerDemo.xcodeproj">
+      location = "group:LoopTracker.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:LoopTracker.xcodeproj">
+      location = "group:LoopTrackerDemo/LoopTrackerDemo.xcodeproj">
    </FileRef>
 </Workspace>

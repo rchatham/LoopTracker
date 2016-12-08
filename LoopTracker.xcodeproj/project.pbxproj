@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30099DFA1C0025B100599673 /* LoopTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30099DF91C0025B100599673 /* LoopTrackerView.swift */; };
+		3037EC551DF9E51100F072BA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3037EC541DF9E51100F072BA /* CircleView.swift */; };
+		3037EC571DF9E53F00F072BA /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3037EC561DF9E53F00F072BA /* UIKit+Extensions.swift */; };
 		308F43B81BE05024006AC354 /* LoopTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 308F43B71BE05024006AC354 /* LoopTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		308F43BF1BE05024006AC354 /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308F43B41BE05024006AC354 /* LoopTracker.framework */; settings = {ASSET_TAGS = (); }; };
+		308F43BF1BE05024006AC354 /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308F43B41BE05024006AC354 /* LoopTracker.framework */; };
 		308F43C41BE05024006AC354 /* LoopTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43C31BE05024006AC354 /* LoopTrackerTests.swift */; };
-		308F43CF1BE05041006AC354 /* LoopTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43CE1BE05041006AC354 /* LoopTracker.swift */; settings = {ASSET_TAGS = (); }; };
+		308F43CF1BE05041006AC354 /* LoopTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43CE1BE05041006AC354 /* LoopTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +27,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30099DF91C0025B100599673 /* LoopTrackerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoopTrackerView.swift; sourceTree = "<group>"; };
+		3037EC541DF9E51100F072BA /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		3037EC561DF9E53F00F072BA /* UIKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		308F43B41BE05024006AC354 /* LoopTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoopTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F43B71BE05024006AC354 /* LoopTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoopTracker.h; sourceTree = "<group>"; };
 		308F43B91BE05024006AC354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +81,9 @@
 			children = (
 				308F43B71BE05024006AC354 /* LoopTracker.h */,
 				308F43CE1BE05041006AC354 /* LoopTracker.swift */,
+				3037EC541DF9E51100F072BA /* CircleView.swift */,
+				3037EC561DF9E53F00F072BA /* UIKit+Extensions.swift */,
+				30099DF91C0025B100599673 /* LoopTrackerView.swift */,
 				308F43B91BE05024006AC354 /* Info.plist */,
 			);
 			path = LoopTracker;
@@ -146,11 +155,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Reid Chatham";
 				TargetAttributes = {
 					308F43B31BE05024006AC354 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 					};
 					308F43BD1BE05024006AC354 = {
 						CreatedOnToolsVersion = 7.0;
@@ -197,7 +207,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3037EC551DF9E51100F072BA /* CircleView.swift in Sources */,
 				308F43CF1BE05041006AC354 /* LoopTracker.swift in Sources */,
+				3037EC571DF9E53F00F072BA /* UIKit+Extensions.swift in Sources */,
+				30099DFA1C0025B100599673 /* LoopTrackerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,8 +246,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -281,8 +296,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -302,6 +319,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -313,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -324,6 +343,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -331,6 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -341,6 +362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -383,6 +405,7 @@
 				308F43CA1BE05024006AC354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		308F43CB1BE05024006AC354 /* Build configuration list for PBXNativeTarget "LoopTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -391,6 +414,7 @@
 				308F43CD1BE05024006AC354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

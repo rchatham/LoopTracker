@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3037EC5D1DF9EE0400F072BA /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */; };
+		3037EC5E1DF9EE0400F072BA /* LoopTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		308F43DD1BE0562F006AC354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43DC1BE0562F006AC354 /* AppDelegate.swift */; };
 		308F43DF1BE0562F006AC354 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43DE1BE0562F006AC354 /* ViewController.swift */; };
 		308F43E21BE0562F006AC354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308F43E01BE0562F006AC354 /* Main.storyboard */; };
@@ -14,7 +16,6 @@
 		308F43EA1BE0562F006AC354 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308F43E81BE0562F006AC354 /* LaunchScreen.storyboard */; };
 		308F43F51BE0562F006AC354 /* LoopTrackerDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43F41BE0562F006AC354 /* LoopTrackerDemoTests.swift */; };
 		308F44001BE0562F006AC354 /* LoopTrackerDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43FF1BE0562F006AC354 /* LoopTrackerDemoUITests.swift */; };
-		308F44101BE13E9B006AC354 /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 308F440F1BE13E9B006AC354 /* LoopTracker.framework */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3037EC5B1DF9ECE400F072BA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3037EC5E1DF9EE0400F072BA /* LoopTracker.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F43D91BE0562F006AC354 /* LoopTrackerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoopTrackerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F43DC1BE0562F006AC354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		308F43DE1BE0562F006AC354 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +64,6 @@
 		308F43FB1BE0562F006AC354 /* LoopTrackerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoopTrackerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F43FF1BE0562F006AC354 /* LoopTrackerDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopTrackerDemoUITests.swift; sourceTree = "<group>"; };
 		308F44011BE0562F006AC354 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		308F440F1BE13E9B006AC354 /* LoopTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LoopTracker.framework; path = "../../../../Library/Developer/Xcode/DerivedData/LoopTracker-cfjuavftmaahfvbdsiukcbwreqcc/Build/Products/Debug-iphoneos/LoopTracker.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				308F44101BE13E9B006AC354 /* LoopTracker.framework in Frameworks */,
+				3037EC5D1DF9EE0400F072BA /* LoopTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +95,7 @@
 		308F43D01BE0562F006AC354 = {
 			isa = PBXGroup;
 			children = (
+				3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */,
 				308F43DB1BE0562F006AC354 /* LoopTrackerDemo */,
 				308F43F31BE0562F006AC354 /* LoopTrackerDemoTests */,
 				308F43FE1BE0562F006AC354 /* LoopTrackerDemoUITests */,
@@ -100,7 +116,6 @@
 		308F43DB1BE0562F006AC354 /* LoopTrackerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				308F440F1BE13E9B006AC354 /* LoopTracker.framework */,
 				308F43DC1BE0562F006AC354 /* AppDelegate.swift */,
 				308F43DE1BE0562F006AC354 /* ViewController.swift */,
 				308F43E01BE0562F006AC354 /* Main.storyboard */,
@@ -139,6 +154,7 @@
 				308F43D51BE0562F006AC354 /* Sources */,
 				308F43D61BE0562F006AC354 /* Frameworks */,
 				308F43D71BE0562F006AC354 /* Resources */,
+				3037EC5B1DF9ECE400F072BA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,18 +207,22 @@
 		308F43D11BE0562F006AC354 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Reid Chatham";
 				TargetAttributes = {
 					308F43D81BE0562F006AC354 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = NT7FFBVKUP;
+						LastSwiftMigration = 0810;
 					};
 					308F43EF1BE0562F006AC354 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 						TestTargetID = 308F43D81BE0562F006AC354;
 					};
 					308F43FA1BE0562F006AC354 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0810;
 						TestTargetID = 308F43D81BE0562F006AC354;
 					};
 				};
@@ -328,8 +348,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -373,8 +395,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -393,6 +417,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -402,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NT7FFBVKUP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LoopTrackerDemo",
@@ -410,6 +436,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTrackerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -417,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NT7FFBVKUP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LoopTrackerDemo",
@@ -425,6 +453,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTrackerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -436,6 +465,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTrackerDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoopTrackerDemo.app/LoopTrackerDemo";
 			};
 			name = Debug;
@@ -448,6 +478,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTrackerDemoTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LoopTrackerDemo.app/LoopTrackerDemo";
 			};
 			name = Release;
@@ -459,6 +490,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTrackerDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = LoopTrackerDemo;
 				USES_XCTRUNNER = YES;
 			};
@@ -471,6 +503,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rchatham.LoopTrackerDemoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = LoopTrackerDemo;
 				USES_XCTRUNNER = YES;
 			};
@@ -495,6 +528,7 @@
 				308F44061BE0562F006AC354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		308F44071BE0562F006AC354 /* Build configuration list for PBXNativeTarget "LoopTrackerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +537,7 @@
 				308F44091BE0562F006AC354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		308F440A1BE0562F006AC354 /* Build configuration list for PBXNativeTarget "LoopTrackerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +546,7 @@
 				308F440C1BE0562F006AC354 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

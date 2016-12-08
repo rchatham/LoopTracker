@@ -9,25 +9,30 @@
 
 import UIKit
 
-public class LoopTracker: UIView {
+open class LoopTracker: UIView {
     
-    private var beatInfo : (beatsPerLoop: Double, bpm: Double, beatCount: Double)!
-    
-    private struct Constants {
-        static let AnimationChangeTimeStep : Double = 0.01
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
     }
     
-    // Set this to false to make the loop unwind instead of fill
-    public var clockwise = true
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
     
-    public var color = UIColor.whiteColor().colorWithAlphaComponent(1.0)
     
-    // Sets a custom outer ring radius
-    public var ringOuterRadius : CGFloat!
-    // Sets a custom outer ring width
-    public var ringWidth : CGFloat!
-    // Sets a custom radius for the beat counter
-    public var beatCounterRadius : CGFloat! {
+    /// Set this to false to make the loop unwind instead of fill
+    open var clockwise = true
+    
+    open var color = UIColor.white.withAlphaComponent(1.0)
+    
+    /// Sets a custom outer ring radius
+    open var ringOuterRadius : CGFloat!
+    /// Sets a custom outer ring width
+    open var ringWidth : CGFloat!
+    /// Sets a custom radius for the beat counter
+    open var beatCounterRadius : CGFloat! {
         didSet {
             beatCounter?.frame = CGRect(x: frame.width/2-beatCounterRadius, y: frame.height/2-beatCounterRadius, width: beatCounterRadius*2, height: beatCounterRadius*2)
             beatCounter?.backgroundColor = color
@@ -37,26 +42,77 @@ public class LoopTracker: UIView {
         }
     }
     
-    // Gives the length of the current animation
-    // The finishingAnimation() has a trailing animation that is also the same length
-    public var duration : Double { return 60/beatInfo.bpm }
+    /// Gives the length of the current animation
+    /// The finishingAnimation() has a trailing animation that is also the same length
+    open var duration : Double { return 60/beatInfo.bpm }
     
-    override public init(frame: CGRect) {
-        super.init(frame: frame)
+    /// Call this method to update the animation for the current beat
+    open func beatElapsed(_ beatInfo : (beatsPerLoop: Double, bpm: Double, beatCount: Double)) {
+        self.beatInfo = beatInfo
         
-        setup()
+        animationTimer?.invalidate()
+        animationTimer = nil
+        
+        animateBeatElapsed()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        setup()
+    /// DO NOT CALL THIS FUNCTION DIRECTLY!!!
+    /// Call beatElapsed instead
+    override open func draw(_ rect: CGRect) {
+        drawLoopCounter(ringOuterRadius)
     }
     
-    private var beatCounter : UIView!
+    // MARK: - Internal
     
-    private func setup() {
-        self.backgroundColor = UIColor.clearColor()
+    internal func updateBeatForAnimation() {
+        
+        let endProgress = beatInfo.beatCount / beatInfo.beatsPerLoop
+        let numberOfAnimations = duration/Constants.animationChangeTimeStep
+        
+        if endProgress > (beatInfo.beatsPerLoop-1)/beatInfo.beatsPerLoop {
+            alphaReduction += 1.0/CGFloat(numberOfAnimations)
+            alphaReduction = min(alphaReduction, 1.0)
+        } else if finishingAnimationInProgress == false {
+            alphaReduction -= 1.0/CGFloat(numberOfAnimations)
+            alphaReduction = max(alphaReduction, 0.0)
+        }
+        let currentAlpha = 1.0 - alphaReduction
+        color = color.withAlphaComponent(currentAlpha)
+        
+        
+        progress += animationProgressStep
+        
+        if (animationProgressStep > 0 && progress >= endProgress) || (animationProgressStep < 0 && progress <= endProgress) {
+            animationTimer?.invalidate()
+            animationTimer = nil
+            progress = endProgress
+        }
+        
+        setNeedsDisplay()
+    }
+    
+    // MARK: - Fileprivate
+    
+    fileprivate struct Constants {
+        static let animationChangeTimeStep : Double = 0.01
+    }
+    
+    fileprivate var beatInfo : (beatsPerLoop: Double, bpm: Double, beatCount: Double)!
+    
+    fileprivate var beatCounter : UIView!
+    
+    fileprivate var animationTimer : Timer!
+    
+    fileprivate var progress : Double = 0
+    fileprivate var animationProgressStep : Double = 0
+    
+    fileprivate var finishingAnimationInProgress = false
+    
+    fileprivate var alphaReduction : CGFloat = 0.0
+    
+    
+    fileprivate func setup() {
+        self.backgroundColor = UIColor.clear
         
         // Determine initial radii
         // Can be reset using public properties
@@ -66,98 +122,82 @@ public class LoopTracker: UIView {
         beatCounterRadius = maxRadius*0.7
         
         //Create Beat Counter
-        beatCounter = UIView(frame: CGRect(x: frame.width/2-beatCounterRadius, y: frame.height/2-beatCounterRadius, width: beatCounterRadius*2, height: beatCounterRadius*2))
+        beatCounter = UIView(
+            frame: CGRect(
+                x: frame.width/2-beatCounterRadius,
+                y: frame.height/2-beatCounterRadius,
+                width: beatCounterRadius*2,
+                height: beatCounterRadius*2
+            )
+        )
         beatCounter.backgroundColor = color
         beatCounter.alpha = 0.0
         beatCounter.layer.cornerRadius = beatCounterRadius
         beatCounter.clipsToBounds = true
+        
         self.addSubview(beatCounter)
     }
     
-    private var animationTimer : NSTimer!
-    
-    private var startProgress : Double = 0
-    private var progress : Double = 0
-    private var endProgress : Double = 0
-    private var animationProgressStep : Double = 0
-    
-    // Call this method to update the animation for the current beat
-    public func beatElapsed(beatInfo : (beatsPerLoop: Double, bpm: Double, beatCount: Double)) {
-        self.beatInfo = beatInfo
-        
-        animationTimer?.invalidate()
-        animationTimer = nil
-        
-        animateBeatElapsed()
-    }
-    
-    private func animateBeatElapsed() {
+    fileprivate func animateBeatElapsed() {
         
         if beatInfo == nil {
             fatalError("Beat not set")
         }
         
-        startProgress = progress
-        endProgress = beatInfo.beatCount / beatInfo.beatsPerLoop
-        if endProgress == 1/beatInfo.beatsPerLoop {
-            startProgress = 0
-        }
-        
-        if endProgress == 1 {
+        if beatInfo.beatCount == beatInfo.beatsPerLoop {
+            standardAnimation()
             finishingAnimation()
         } else {
             standardAnimation()
         }
     }
     
-    private func standardAnimation() {
+    fileprivate func standardAnimation() {
         
-        animationProgressStep = (endProgress-startProgress) * Constants.AnimationChangeTimeStep / duration
+        let endProgress = beatInfo.beatCount / beatInfo.beatsPerLoop
+        let startProgress = beatInfo.beatCount == 1 ? 0 : progress
         
-        animationTimer = NSTimer.scheduledTimerWithTimeInterval(Constants.AnimationChangeTimeStep, target: self, selector: Selector("updateBeatForAnimation"), userInfo: nil, repeats: true)
+        animationProgressStep = (endProgress-startProgress) * Constants.animationChangeTimeStep / duration
+        
+        animationTimer = Timer.scheduledTimer(timeInterval: Constants.animationChangeTimeStep, target: self, selector: #selector(LoopTracker.updateBeatForAnimation), userInfo: nil, repeats: true)
         
         
-        UIView.animateWithDuration(duration/2, animations: {
+        UIView.animate(withDuration: duration/2, animations: {
             [unowned self] in
             self.beatCounter.alpha = 1.0 - self.alphaReduction
-            }) { [unowned self]
+            }, completion: { [unowned self]
                 (success) -> Void in
                 
-                UIView.animateWithDuration(self.duration/2, animations: {
+                UIView.animate(withDuration: self.duration/2, animations: {
                     [unowned self] in
                     self.beatCounter.alpha = 0.0
                     })
-        }
+        }) 
     }
     
-    private var resizingView : UIView!
-    
-    private var finishingAnimationInProgress = false
-    
-    private func finishingAnimation() {
-    
-        standardAnimation()
+    fileprivate func finishingAnimation() {
         
-        resizingView = UIView(frame: CGRect(x: frame.width/2-ringOuterRadius, y: frame.height/2-ringOuterRadius, width: ringOuterRadius*2, height: ringOuterRadius*2))
+        let resizingView = CircleView(frame: CGRect(x: frame.width/2-ringOuterRadius, y: frame.height/2-ringOuterRadius, width: ringOuterRadius*2, height: ringOuterRadius*2))
         resizingView.backgroundColor = color
         resizingView.alpha = 0.0
         resizingView.layer.cornerRadius = ringOuterRadius
         resizingView.clipsToBounds = true
+        
         self.addSubview(resizingView)
         
         resizingView.resizeCircleView(frame: CGRect(origin: beatCounter.frame.origin, size: beatCounter.frame.size), duration: duration)
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             [unowned self] in
             
             self.finishingAnimationInProgress = true
             
-            self.resizingView.alpha = 1.0
+            resizingView.alpha = 1.0
             
-            }) { [unowned self]
+            }, completion: { [unowned self]
                 (success) -> Void in
                 
-                self.resizingView.removeFromSuperview()
+                resizingView.removeFromSuperview()
                 
                 var explodingViews = [UIView]()
                 
@@ -167,19 +207,19 @@ public class LoopTracker: UIView {
                     
                     let r = maxRadius*0.05
                     
-                    let view = ExplodingView(frame: CGRect(x: (self.frame.width/2)-r, y: (self.frame.height/2)-r, width: 2*r, height: 2*r))
-                    view.color = self.color.colorWithAlphaComponent(1.0)
+                    let view = CircleView(frame: CGRect(x: (self.frame.width/2)-r, y: (self.frame.height/2)-r, width: 2*r, height: 2*r))
+                    view.color = self.color.withAlphaComponent(1.0)
                     self.addSubview(view)
                     explodingViews.append(view)
                 }
                 
-                UIView.animateWithDuration(self.duration, animations: {
+                UIView.animate(withDuration: self.duration, animations: {
                     [unowned self] in
                     
                     for index in 0..<explodingViews.count {
                         let distanceToExplode = self.ringOuterRadius // + CGFloat(arc4random())%(self.ringWidth)
-                        let newX = (CGFloat(cos(2*M_PI*Double(index+1)/Double(explodingViews.count))) * distanceToExplode) + self.frame.width/2
-                        let newY = (CGFloat(sin(2*M_PI*Double(index+1)/Double(explodingViews.count))) * distanceToExplode) + self.frame.height/2
+                        let newX = (CGFloat(cos(2*M_PI*Double(index+1)/Double(explodingViews.count))) * distanceToExplode!) + self.frame.width/2
+                        let newY = (CGFloat(sin(2*M_PI*Double(index+1)/Double(explodingViews.count))) * distanceToExplode!) + self.frame.height/2
                         let newCenter = CGPoint(x: newX, y: newY)
                         explodingViews[index].frame.size.width = 4
                         explodingViews[index].frame.size.height = 4
@@ -197,111 +237,28 @@ public class LoopTracker: UIView {
                             view.removeFromSuperview()
                         }
                 })
-        }
+        }) 
     }
     
-    private var alphaReduction : CGFloat = 0.0
-    
-    // DO NOT CALL THIS FUNCTION DIRECTLY!!
-    // Call beatElapsed
-    func updateBeatForAnimation() {
-        
-        let numberOfAnimations = duration/Constants.AnimationChangeTimeStep
-
-        if endProgress > (beatInfo.beatsPerLoop-1)/beatInfo.beatsPerLoop {
-            alphaReduction += 1.0/CGFloat(numberOfAnimations)
-            alphaReduction = min(alphaReduction, 1.0)
-        } else if finishingAnimationInProgress == false {
-            alphaReduction -= 1.0/CGFloat(numberOfAnimations)
-            alphaReduction = max(alphaReduction, 0.0)
-        }
-        let currentAlpha = 1.0 - alphaReduction
-        color = color.colorWithAlphaComponent(currentAlpha)
-        
-        
-        progress += animationProgressStep
-        
-        if (animationProgressStep > 0 && progress >= endProgress) || (animationProgressStep < 0 && progress <= endProgress) {
-            animationTimer?.invalidate()
-            animationTimer = nil
-            progress = endProgress
-        }
-        
-        setNeedsDisplay()
-    }
-    
-    // DO NOT CALL THIS FUNCTION DIRECTLY!!!
-    // Call beatElapsed
-    override public func drawRect(rect: CGRect) {
-        drawLoopCounter(ringOuterRadius)
-    }
-    
-
-    private func drawLoopCounter(radius: CGFloat) {
+    fileprivate func drawLoopCounter(_ radius: CGFloat) {
         let innerRadius = radius - ringWidth
         
         let radiansToDraw = CGFloat(2*M_PI * Double(progress))
         
         let loop = UIBezierPath()
-        loop.moveToPoint(CGPoint(x: frame.width/2, y: frame.height/2-innerRadius))
-        loop.addLineToPoint(CGPoint(x: frame.width/2, y: frame.height/2-radius))
-        loop.addArcWithCenter(CGPoint(x: frame.width/2, y: frame.height/2), radius: radius, startAngle: -CGFloat(0.5*M_PI), endAngle: radiansToDraw-CGFloat(0.5*M_PI), clockwise: clockwise)
+        loop.move(to: CGPoint(x: frame.width/2, y: frame.height/2-innerRadius))
+        loop.addLine(to: CGPoint(x: frame.width/2, y: frame.height/2-radius))
+        loop.addArc(withCenter: CGPoint(x: frame.width/2, y: frame.height/2), radius: radius, startAngle: -CGFloat(0.5*M_PI), endAngle: radiansToDraw-CGFloat(0.5*M_PI), clockwise: clockwise)
         
         let p = loop.currentPoint
         let newX = ((p.x - frame.width/2) * innerRadius/radius) + frame.width/2
         let newY = ((p.y - frame.height/2) * innerRadius/radius) + frame.height/2
         
-        loop.addLineToPoint(CGPoint(x: newX, y: newY))
-        loop.addArcWithCenter(CGPoint(x: frame.width/2, y: frame.height/2), radius: innerRadius, startAngle: radiansToDraw-CGFloat(0.5*M_PI), endAngle: -CGFloat(0.5*M_PI), clockwise: !clockwise)
+        loop.addLine(to: CGPoint(x: newX, y: newY))
+        loop.addArc(withCenter: CGPoint(x: frame.width/2, y: frame.height/2), radius: innerRadius, startAngle: radiansToDraw-CGFloat(0.5*M_PI), endAngle: -CGFloat(0.5*M_PI), clockwise: !clockwise)
+        loop.close()
         
-        loop.closePath()
         color.setFill()
         loop.fill()
-    }
-}
-
-private class ExplodingView : UIView {
-    
-    var color = UIColor.whiteColor()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    func setup() {
-        
-        let radius = min(frame.size.width/2, frame.size.height/2)
-        let view = UIView(frame: CGRect(x: frame.size.width/2-radius, y: frame.size.height/2-radius, width: radius*2, height: radius*2))
-        view.backgroundColor = color
-        view.layer.cornerRadius = radius
-        view.clipsToBounds = true
-        self.addSubview(view)
-    }
-}
-
-private extension UIView {
-    
-    func resizeCircleView(frame frame: CGRect, duration: Double) {
-        
-        let estimateFrame = frame
-        
-        UIView.animateWithDuration(duration) {
-            [unowned self] in
-            self.frame = estimateFrame
-        }
-        
-        let estimateCorner = estimateFrame.size.width/2
-        let animation = CABasicAnimation(keyPath: "cornerRadius")
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        animation.fromValue = self.layer.cornerRadius
-        animation.duration = duration
-        self.layer.cornerRadius = estimateCorner
-        self.layer.addAnimation(animation, forKey: "cornerRadius")
     }
 }
