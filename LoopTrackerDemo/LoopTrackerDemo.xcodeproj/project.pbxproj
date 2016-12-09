@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3037EC5D1DF9EE0400F072BA /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */; };
-		3037EC5E1DF9EE0400F072BA /* LoopTracker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3037EC601DF9EF3E00F072BA /* LoopTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3037EC5F1DF9EF3E00F072BA /* LoopTracker.framework */; };
 		308F43DD1BE0562F006AC354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43DC1BE0562F006AC354 /* AppDelegate.swift */; };
 		308F43DF1BE0562F006AC354 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308F43DE1BE0562F006AC354 /* ViewController.swift */; };
 		308F43E21BE0562F006AC354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308F43E01BE0562F006AC354 /* Main.storyboard */; };
@@ -42,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3037EC5E1DF9EE0400F072BA /* LoopTracker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3037EC5F1DF9EF3E00F072BA /* LoopTracker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopTracker.framework; sourceTree = "<group>"; };
 		308F43D91BE0562F006AC354 /* LoopTrackerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoopTrackerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308F43DC1BE0562F006AC354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		308F43DE1BE0562F006AC354 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3037EC5D1DF9EE0400F072BA /* LoopTracker.framework in Frameworks */,
+				3037EC601DF9EF3E00F072BA /* LoopTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +93,7 @@
 		308F43D01BE0562F006AC354 = {
 			isa = PBXGroup;
 			children = (
-				3037EC5C1DF9EE0400F072BA /* LoopTracker.framework */,
+				3037EC5F1DF9EF3E00F072BA /* LoopTracker.framework */,
 				308F43DB1BE0562F006AC354 /* LoopTrackerDemo */,
 				308F43F31BE0562F006AC354 /* LoopTrackerDemoTests */,
 				308F43FE1BE0562F006AC354 /* LoopTrackerDemoUITests */,
@@ -431,6 +429,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LoopTrackerDemo",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LoopTrackerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -448,6 +447,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LoopTrackerDemo",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LoopTrackerDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

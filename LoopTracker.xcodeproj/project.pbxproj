@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30099DFA1C0025B100599673 /* LoopTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30099DF91C0025B100599673 /* LoopTrackerView.swift */; };
 		3037EC551DF9E51100F072BA /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3037EC541DF9E51100F072BA /* CircleView.swift */; };
 		3037EC571DF9E53F00F072BA /* UIKit+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3037EC561DF9E53F00F072BA /* UIKit+Extensions.swift */; };
 		308F43B81BE05024006AC354 /* LoopTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 308F43B71BE05024006AC354 /* LoopTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,7 +26,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30099DF91C0025B100599673 /* LoopTrackerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoopTrackerView.swift; sourceTree = "<group>"; };
 		3037EC541DF9E51100F072BA /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		3037EC561DF9E53F00F072BA /* UIKit+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extensions.swift"; sourceTree = "<group>"; };
 		308F43B41BE05024006AC354 /* LoopTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LoopTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +81,6 @@
 				308F43CE1BE05041006AC354 /* LoopTracker.swift */,
 				3037EC541DF9E51100F072BA /* CircleView.swift */,
 				3037EC561DF9E53F00F072BA /* UIKit+Extensions.swift */,
-				30099DF91C0025B100599673 /* LoopTrackerView.swift */,
 				308F43B91BE05024006AC354 /* Info.plist */,
 			);
 			path = LoopTracker;
@@ -210,7 +207,6 @@
 				3037EC551DF9E51100F072BA /* CircleView.swift in Sources */,
 				308F43CF1BE05041006AC354 /* LoopTracker.swift in Sources */,
 				3037EC571DF9E53F00F072BA /* UIKit+Extensions.swift in Sources */,
-				30099DFA1C0025B100599673 /* LoopTrackerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
